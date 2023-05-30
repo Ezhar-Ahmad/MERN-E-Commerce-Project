@@ -1,0 +1,15 @@
+.path-links {
+  margin: "5px 0px";
+  font-size: "12px";
+  text-decoration: "underline";
+  cursor: "pointer";
+}
+
+.nav-links {
+  text-decoration: none;
+  color: black;
+}
+
+.counter-buttons {
+  border: none;
+}
