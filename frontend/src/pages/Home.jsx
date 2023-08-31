@@ -8,7 +8,6 @@ import Products from "../components/Products";
 import Slider from "../components/Slider";
 import { useSelector, useDispatch } from "react-redux";
 import { loggedinUserDetail } from "../redux/features/counter/counterSlice";
-import { Navigate } from "react-router-dom";
 
 const Home = () => {
   const searchedItems = useSelector((state) => state.products.searchedProducts);
@@ -18,7 +17,6 @@ const Home = () => {
     (state) => state.userLoginDetail.loginUserDetail
   );
   const token = window.localStorage.getItem("token");
-  //const token = useSelector((state) => state.userToken.token);
   const dispatch = useDispatch();
 
   const getLoggedInUserData = async () => {
@@ -35,8 +33,12 @@ const Home = () => {
       .then((res) => {
         if (res.status == "ok") {
           dispatch(loggedinUserDetail(res.data));
+        } else if (res.status == "error" && res.data == "token expired") {
+          alert("token expired, login again.");
+          window.localStorage.clear();
+          window.location.href = "/login";
         } else {
-          alert(res.error);
+          alert(res.data);
         }
       });
   };

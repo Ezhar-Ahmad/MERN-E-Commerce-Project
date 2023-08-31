@@ -1,7 +1,6 @@
 import styled from "styled-components";
-//import { popularProducts } from "../data";
 import Product from "./Product";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productsArray } from "../redux/features/counter/counterSlice";
 
@@ -13,7 +12,6 @@ const Container = styled.div`
 `;
 
 const Products = (props) => {
-  //const [products, setProducts] = useState([]);
   const products = useSelector((state) => state.getAllProducts.allProducts);
   const dispatch = useDispatch();
 
@@ -22,7 +20,6 @@ const Products = (props) => {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          //setProducts(res.allProducts);
           dispatch(productsArray(res.allProducts));
         }
       });

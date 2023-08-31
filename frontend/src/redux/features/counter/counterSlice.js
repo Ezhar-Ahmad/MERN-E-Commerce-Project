@@ -8,9 +8,9 @@ const initialProducts = { allProducts: [] };
 const searchProducts = { searchedProducts: [] };
 const initialToken = { token: "" };
 const initialUserDetail = { loginUserDetail: {} };
-const initialLoginState = { isLoggedIn: false };
 const initialAdminDetail = { loginAdminDetail: {} };
-const initialAdminLoginState = { isAdmin: false };
+//const initialLoginState = { isLoggedIn: false };
+//const initialAdminLoginState = { isAdmin: false };
 
 export const counterSlice = createSlice({
   name: "counter",
@@ -129,8 +129,8 @@ export const { productsArray } = productsSlice.actions;
 export const { searchedProducts } = searchProductsSlice.actions;
 export const { userLoginToken } = tokenSlice.actions;
 export const { loggedinUserDetail } = loginUserSlice.actions;
-//export const { isLoggedInUser } = loginUserSlice.actions;
 export const { loggedinAdminDetail } = loginAdminSlice.actions;
 //export const { isLoggedInAdmin } = loginAdminSlice.actions;
+//export const { isLoggedInUser } = loginUserSlice.actions;
 
 export default store;

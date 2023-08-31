@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Table, Typography } from "@mui/material";
+import { Button, Modal, Table, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
@@ -126,15 +126,6 @@ const CustomBox = styled.div`
   flex-direction: column;
 `;
 
-// const TableRow = styled.tr`
-//   background-color: blue;
-//   color: white;
-// `;
-// const TableColumn = styled.td`
-//   background-color: blue;
-//   color: white;
-// `;
-
 const Dashboard = () => {
   const allProducts = useSelector((state) => state.getAllProducts.allProducts);
 
@@ -174,7 +165,6 @@ const Dashboard = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const editData = async (item) => {
-    //alert(item._id);
     setIsEdit(true);
     setProductId(item._id);
     setProductTitle(item.title);
@@ -289,7 +279,6 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {
-          //setAllCategories(res.allCategories);
           setCategoriesCount(res.allCategories);
         } else {
           alert(res.message);
@@ -500,12 +489,6 @@ const Dashboard = () => {
           <Button variant="contained" onClick={() => handleOpen("category")}>
             Add Category
           </Button>
-          {/* <Button variant="contained" onClick={() => handleOpen("cartitem")}>
-            Add CartItem
-          </Button>
-          <Button variant="contained" onClick={() => handleOpen("wishlist")}>
-            Add Wishlist Item
-          </Button> */}
         </DataAddContainer>
 
         <Modal

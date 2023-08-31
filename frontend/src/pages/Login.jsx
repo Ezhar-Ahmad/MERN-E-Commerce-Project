@@ -1,17 +1,16 @@
 import styled from "styled-components";
-//import { Link } from "react-router-dom";
 import RouteLink from "../components/RouteLink";
 import "../../src/index.css";
 import { useState } from "react";
 import Input from "../components/Input";
 import LoginButton from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { userLoginToken } from "../redux/features/counter/counterSlice";
-import { isLoggedInUser } from "../redux/features/counter/counterSlice";
 import { useEffect } from "react";
-import AdminLogin from "../admin/adminLogin";
-import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
+//import { userLoginToken } from "../redux/features/counter/counterSlice";
+//import { isLoggedInUser } from "../redux/features/counter/counterSlice";
+//import AdminLogin from "../admin/adminLogin";
+//import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -27,8 +26,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-//
-//https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
+
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
@@ -72,13 +70,9 @@ const Login = (props) => {
         .then((response) => response.json())
         .then((res) => {
           if (res.status == "Ok") {
-            //alert(res.data);
-            //alert("User logged in successfully.");
             setEmail("");
             setPassword("");
             window.localStorage.setItem("token", res.data);
-            //set state in redux store
-            //dispatch(userLoginToken(res.data));
             window.localStorage.setItem("isLoggedIn", true);
             //dispatch(isLoggedInUser(true));
             window.location.href = "./";

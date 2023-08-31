@@ -8,8 +8,6 @@ import {
 import styled from "styled-components";
 import { useState } from "react";
 import RouteLink from "./RouteLink";
-import SingleProduct from "../../src/pages/Product";
-import Button from "./Button";
 import { useSelector } from "react-redux";
 
 const Info = styled.div`
@@ -120,8 +118,6 @@ const Product = ({ item }) => {
         .then((res) => {
           if (res.success) {
             setResponse(res.addedProduct);
-            //set redux state for added cart and use in home/cart component in useEffect
-            //to track the cart number change.
             alert("Added to wishlist successfully.");
           } else if (!res.success) {
             alert(res.error);
@@ -154,8 +150,6 @@ const Product = ({ item }) => {
         .then((res) => {
           if (res.success) {
             setCartResponse(res.createdCartItem);
-            //set redux state for added cart and use in home/cart component in useEffect
-            //to track the cart number change.
             alert("cart added successfully.");
           } else if (!res.success) {
             alert(res.error);

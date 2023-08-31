@@ -73,7 +73,6 @@ const Register = () => {
         .then((res) => {
           if (res.success) {
             setResponse(res.createdUser);
-            //alert("User registered successfully.");
             setFirstName("");
             setLastName("");
             setUserName("");

@@ -6,8 +6,6 @@ import "../../src/index.css";
 import SearchProduct from "./SearchProduct";
 import CartIcon from "./CartIcon";
 import { Button } from "@mui/material";
-import { WindowSharp } from "@mui/icons-material";
-import { current } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 const Container = styled.div`
@@ -64,40 +62,41 @@ const Navbar = () => {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    window.localStorage.setItem("isLoggedIn", false);
-    window.localStorage.setItem("isAdminLoggedIn", false);
     window.location.href = "/login";
   };
   useEffect(() => {}, [isLoggedIn, isAdmin]);
 
   const handleCard = () => {
     setCardStatus((current) => !current);
-    console.log(cardStatus);
   };
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchProduct />
+          {isLoggedIn == "true" ? <SearchProduct /> : ""}
         </Left>
         <Center>
           <Logo>
-            <RouteLink className="nav-links" to="/" value={"WardrobeWhiz"} />
+            {isLoggedIn == "true" ? (
+              <RouteLink className="nav-links" to="/" value={"WardrobeWhiz"} />
+            ) : (
+              "WardrobeWhiz"
+            )}
           </Logo>
         </Center>
         <Right>
-          {isLoggedIn && (
+          {isAdmin == "true" || isLoggedIn == "true" ? (
             <MenuItem>
               <Button variant="text" onClick={handleLogout}>
                 SIGN OUT
               </Button>
             </MenuItem>
+          ) : (
+            ""
           )}
 
-          <MenuItem>
-            <CartIcon />
-          </MenuItem>
+          <MenuItem>{isLoggedIn == "true" ? <CartIcon /> : ""}</MenuItem>
           {/* {cardStatus && <BasicCard />} */}
           <MenuItem>
             <button

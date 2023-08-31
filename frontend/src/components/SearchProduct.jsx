@@ -1,5 +1,4 @@
 import styled from "styled-components";
-//import Search from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { searchedProducts } from "../redux/features/counter/counterSlice";
@@ -17,16 +16,6 @@ const Input = styled.input`
   border: none;
   height: 25px;
 `;
-
-// const SearchButton = styled.div`
-// "border": "none",
-// "background-color": "white",
-// "width": "20px",
-// "margin-left": "1px",
-// "display": "flex";
-// "justify-content": "center",
-// "align-items": "center",
-// `;
 
 const SearchProduct = () => {
   const [searchedKeyword, setSearchKeyword] = useState("");
@@ -57,9 +46,6 @@ const SearchProduct = () => {
         placeholder="Search"
         onChange={(e) => setSearchKeyword(e.target.value)}
       />
-      {/* <SearchButton>
-        <Search style={{ color: "gray", fontSize: 18, marginLeft: "5px" }} />
-      </SearchButton> */}
     </SearchContainer>
   );
 };

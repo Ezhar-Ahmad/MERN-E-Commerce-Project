@@ -17,7 +17,8 @@ const App = () => {
   //const isAdmin = useSelector((state) => state.isAdminLoggedIn.isAdmin);
   const isLoggedIn = window.localStorage.getItem("isLoggedIn");
   const isAdmin = window.localStorage.getItem("isAdminLoggedIn");
-  console.log(isLoggedIn);
+  const token = window.localStorage.getItem("token");
+
   return (
     <>
       <Routes>
@@ -26,19 +27,27 @@ const App = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/register" element={<AdminRegister />} />
         <Route path="/reset_password" element={<ResetPassword />} />
-        {isLoggedIn && isAdmin && <Route path="/admin" element={<Admin />} />}
 
-        {isLoggedIn && (
-          <>
-            <Route path="/" element={<Home />} />
-            <Route path="/productList" element={<ProductList />} />
-            <Route path={`/product`} element={<Product />} />
-            <Route path="/cart" element={<Cart />} />
-          </>
-        )}
+        <Route path="/" element={isLoggedIn == "true" ? <Home /> : <Login />} />
+        <Route
+          path="/productList"
+          element={isLoggedIn == "true" ? <ProductList /> : <Login />}
+        />
+        <Route
+          path={`/product`}
+          element={isLoggedIn == "true" ? <Product /> : <Login />}
+        />
+        <Route
+          path="/cart"
+          element={isLoggedIn == "true" ? <Cart /> : <Login />}
+        />
 
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
+        {
+          <Route
+            path="/admin"
+            element={isAdmin == "true" ? <Admin /> : <AdminLogin />}
+          />
+        }
       </Routes>
     </>
   );

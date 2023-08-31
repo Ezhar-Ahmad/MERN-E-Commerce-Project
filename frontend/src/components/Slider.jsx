@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import RouteLink from "./RouteLink";
 import { Button } from "@mui/material";
-//import { useDispatch } from "react-redux";
-//import { productListType } from "../redux/features/counter/counterSlice";
 
 const Container = styled.div`
   width: 100%;
@@ -74,17 +72,9 @@ const Desc = styled.p`
   letter-spacing: 3px;
 `;
 
-// const Button = styled.button`
-//   padding: 10px;
-//   font-size: 20px;
-//   background-color: transparent;
-//   cursor: pointer;
-// `;
-
 const Slider = () => {
   const [sliders, setSliders] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
-  //const dispatch = useDispatch();
 
   const handleClick = (direction) => {
     if (direction === "left") {
@@ -126,7 +116,6 @@ const Slider = () => {
                 to="/productList"
                 className={""}
                 state={{ type: "New Arrivals", cat_id: "" }}
-                // value={<Button>SHOW NOW</Button>}
                 value={
                   <Button variant="outlined" size="large">
                     SHOW NOW

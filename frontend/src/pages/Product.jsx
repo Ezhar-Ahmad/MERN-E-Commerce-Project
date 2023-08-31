@@ -148,8 +148,6 @@ const Product = ({ item }) => {
       .then((res) => {
         if (res.success) {
           setCartResponse(res.createdCartItem);
-          //set redux state for added cart and use in home/cart component in useEffect
-          //to track the cart number change.
           alert("cart added successfully.");
         } else if (!res.success) {
           alert(res.error);

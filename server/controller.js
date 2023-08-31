@@ -65,7 +65,9 @@ exports.loginUser = async (req, res) => {
     return res.json({ error: "User not found." });
   }
   if (await bcrypt.compare(userData.password, user.password)) {
-    const token = jwt.sign({ email: user.email }, JWT_SECRET);
+    const token = jwt.sign({ email: user.email }, JWT_SECRET, {
+      expiresIn: 3600,
+    });
 
     if (res.status(201)) {
       return res.json({ status: "Ok", data: token });
@@ -80,7 +82,18 @@ exports.loginUser = async (req, res) => {
 exports.userData = async (req, res) => {
   const { token } = req.body;
   try {
-    const user = jwt.verify(token, JWT_SECRET);
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      } else {
+        return res;
+      }
+    });
+
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+
     const userEmail = user.email;
     userModel
       .findOne({ email: userEmail })
@@ -97,7 +110,18 @@ exports.userData = async (req, res) => {
 exports.adminData = async (req, res) => {
   const { token } = req.body;
   try {
-    const admin = jwt.verify(token, JWT_SECRET);
+    const admin = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      } else {
+        return res;
+      }
+    });
+
+    if (admin == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+
     const adminEmail = admin.email;
     adminModel
       .findOne({ email: adminEmail })
@@ -169,7 +193,9 @@ exports.loginAdmin = async (req, res) => {
     return res.json({ error: "Admin not found." });
   }
   if (await bcrypt.compare(adminData.password, admin.password)) {
-    const token = jwt.sign({ email: admin.email }, JWT_SECRET);
+    const token = jwt.sign({ email: admin.email }, JWT_SECRET, {
+      expiresIn: 10,
+    });
 
     if (res.status(201)) {
       return res.json({ status: "ok", data: token });

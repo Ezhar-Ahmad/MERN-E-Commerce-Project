@@ -21,8 +21,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-//https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
-//
 
 const Wrapper = styled.div`
   width: 25%;
@@ -45,11 +43,6 @@ const MyButton = styled.div`
   justify-content: end;
 `;
 
-// const AdminButton = styled.button`
-//   background-color: black;
-//   color: white;
-// `;
-
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,13 +63,10 @@ const AdminLogin = () => {
         .then((response) => response.json())
         .then((res) => {
           if (res.status == "ok") {
-            //alert("Admin logged in successfully.");
             setEmail("");
             setPassword("");
             window.localStorage.setItem("adminToken", res.data);
-            //set state in redux store
             //dispatch(userLoginToken(res.data));
-            window.localStorage.setItem("isLoggedIn", true);
             window.localStorage.setItem("isAdminLoggedIn", true);
             window.location.href = "./";
           } else if (res.status == "error") {

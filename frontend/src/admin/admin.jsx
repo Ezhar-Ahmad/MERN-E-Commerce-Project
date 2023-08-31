@@ -29,6 +29,10 @@ const Admin = () => {
       .then((res) => {
         if (res.status == "ok") {
           dispatch(loggedinAdminDetail(res.data));
+        } else if (res.status == "error" && res.data == "token expired") {
+          alert("token expired, login again.");
+          window.localStorage.clear();
+          window.location.href = "./login";
         } else {
           alert(res.error);
         }

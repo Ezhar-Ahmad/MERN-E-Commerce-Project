@@ -51,7 +51,6 @@ const CategoryItem = ({ item }) => {
     dispatch(displayCategoryItem(item._id));
   };
 
-  //console.log("categoryId: " + categoryId);
   return (
     <Container>
       <Image src={item.imageSrc} />

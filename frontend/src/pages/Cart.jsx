@@ -202,10 +202,6 @@ const Cart = () => {
     getTotalAmount();
   }, []);
 
-  // useEffect(() => {
-  //   getCartItems();
-  //   getTotalAmount();
-  // },[cartsCount]);
   const handleRemoveCart = async (productId) => {
     await fetch(
       `http://localhost:5000/cartItem/remove_cart_item/?productId=${productId}`

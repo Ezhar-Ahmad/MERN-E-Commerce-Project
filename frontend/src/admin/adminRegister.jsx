@@ -17,8 +17,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-//https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
-//
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
